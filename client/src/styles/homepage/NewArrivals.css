@@ -1,0 +1,119 @@
+/* =========================================================
+   NEW ARRIVALS
+========================================================= */
+
+.new-arrivals-section {
+  width: 100%;
+  padding: 4rem 0; /* balanced spacing */
+}
+
+/* ── Header ── */
+.new-arrivals-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.new-arrivals-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--accent-clay);
+  margin-bottom: 0.7rem;
+}
+
+.new-arrivals-title strong {
+  color: var(--charcoal);
+}
+
+/* ── Tabs ── */
+.na-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.na-tab {
+  padding: 0.45rem 1.35rem;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--slate-gray);
+  transition: all 0.25s ease;
+}
+
+.na-tab.active {
+  background: var(--accent-clay);
+  color: white;
+}
+
+.na-tab:hover:not(.active) {
+  color: var(--charcoal);
+}
+
+/* ── Product Grid ── */
+.na-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.8rem;
+  padding: 0 8%;
+}
+
+.na-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.na-img-wrap {
+  background: #F5F2EE;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.na-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.na-card:hover .na-img-wrap img {
+  transform: scale(1.05);
+}
+
+.na-card-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.na-card-price {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--accent-clay);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 1024px) {
+  .na-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .na-grid {
+    grid-template-columns: 1fr;
+  }
+}
