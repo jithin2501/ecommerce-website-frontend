@@ -24,16 +24,21 @@ export default function Navbar() {
 
   useEffect(() => {
     setScrolled(false);
+
     if (!isFixedBanner && !isDetailPage && !isCartPage && !isHomePage && !isAccountPage) return;
+
     const handleScroll = () => setScrolled(window.scrollY > 60);
+
     window.addEventListener('scroll', handleScroll);
     handleScroll();
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
   useEffect(() => {
     const hash = sessionStorage.getItem('scrollTarget');
     if (!hash) return;
+
     if (location.pathname === '/') {
       sessionStorage.removeItem('scrollTarget');
       const el = document.getElementById(hash);
@@ -51,6 +56,7 @@ export default function Navbar() {
   const handleHome = (e) => {
     e.preventDefault();
     sessionStorage.removeItem('scrollTarget');
+
     if (location.pathname !== '/') {
       sessionStorage.setItem('goHome', '1');
       navigate('/');
@@ -61,6 +67,7 @@ export default function Navbar() {
 
   const handleSection = (e, sectionId) => {
     e.preventDefault();
+
     if (location.pathname !== '/') {
       sessionStorage.setItem('scrollTarget', sectionId);
       navigate('/');
@@ -71,8 +78,10 @@ export default function Navbar() {
   };
 
   let navClass = '';
+
   if (isFixedBanner) {
-    navClass = scrolled ? 'nav-banner-scrolled' : 'nav-collections';
+    // ✅ UPDATED HERE
+    navClass = scrolled ? 'nav-banner-scrolled' : 'nav-initial';
   } else if ((isDetailPage || isCartPage || isHomePage || isAccountPage) && scrolled) {
     navClass = 'nav-detail-scrolled';
   }
@@ -101,6 +110,7 @@ export default function Navbar() {
             <User size={18} />
             Account
           </Link>
+
           <Link to="/cart" className="action-item">
             <div className="cart-wrapper">
               <ShoppingCart size={18} />

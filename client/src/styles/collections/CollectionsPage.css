@@ -1,1 +1,21 @@
 .collections-page { width: 100%; min-height: 100vh; }
+.breadcrumb {
+  max-width: 1600px;
+  margin: 150px auto 10px; /* top gap + small bottom gap */
+  padding: 0 var(--side-pad);
+
+  display: flex;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748B;
+}
+.breadcrumb a {
+  text-decoration: none;
+  color: #64748B;
+}
+
+.breadcrumb span:last-child {
+  color: #2D3E50;
+  font-weight: 700;
+}

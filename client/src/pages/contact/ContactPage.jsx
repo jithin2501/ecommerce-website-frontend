@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../../styles/contact/ContactPage.css';
 
 export default function ContactPage() {
@@ -16,7 +17,7 @@ export default function ContactPage() {
         setForm(f => ({ ...f, [name]: value }));
       }
     } else if (name === 'phone') {
-      if (/^[0-9+\s-]*$/.test(value)) {
+      if (/^[0-9]*$/.test(value) && value.length <= 10) {
         setForm(f => ({ ...f, [name]: value }));
       }
     } else {
@@ -24,40 +25,54 @@ export default function ContactPage() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
+
+    if (!form.name || !form.phone || !form.message) {
+      alert('Name, phone number and message are required.');
+      return;
+    }
+    if (form.phone.length !== 10) {
+      alert('Please enter a valid 10-digit phone number.');
+      return;
+    }
+
+    try {
+      const res = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setSent(true);
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      console.error('Submit error:', err);
+      alert('Could not connect to server. Please try again.');
+    }
   };
 
   return (
     <div className="contact-page">
 
-      {/* ── Banner ── */}
-      <section className="contact-banner">
-        <div className="contact-banner-bg">
-          <img src="/images/banner.jpg" alt="Contact Banner" className="contact-banner-img" />
-          <div className="contact-banner-overlay" />
-        </div>
-        {/* Bottom white fade */}
-        <div className="contact-banner-fade" />
-        <div className="contact-banner-content">
-          <p className="contact-banner-tag">Get In Touch</p>
-          <h1 className="contact-banner-title">
-            Personal Support,<br />
-            <span>just for you.</span>
-          </h1>
-          <p className="contact-banner-desc">
-            Have a question about sizing, shipping, or our collections?<br />
-            Our team is ready to assist you and your little ones.
-          </p>
-        </div>
-      </section>
+      <div className="nav-spacer" />
 
       {/* ── Body ── */}
       <section className="contact-body">
         <div className="contact-inner">
 
-          {/* Left */}
+          {/* ── Breadcrumb ── */}
+          <div className="contact-breadcrumb">
+            <Link to="/" className="breadcrumb-link">Home</Link>
+            <span className="breadcrumb-sep"> › </span>
+            <span className="breadcrumb-current">Contact</span>
+          </div>
+
+          {/* ── Left ── */}
           <div className="contact-left">
             <h2 className="contact-heading">
               We are here to help you and your little ones.
@@ -92,15 +107,19 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="contact-info-label">Visit Us</p>
-                  <p className="contact-info-value">No.52, Saxena complex, Kodigehalli Main Rd,<br />Defence Layout, Sahakar Nagar,<br />Bengaluru, Karnataka 560092</p>
+                  <p className="contact-info-value">
+                    No.52, Saxena complex, Kodigehalli Main Rd,<br />
+                    Defence Layout, Sahakar Nagar,<br />
+                    Bengaluru, Karnataka 560092
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right */}
+          {/* ── Right ── */}
           <div className="contact-right">
-            <h3 className="contact-form-title">Send us a Message</h3>
+            {!sent && <h3 className="contact-form-title">Send us a Message</h3>}
             {sent ? (
               <div className="contact-success">
                 <p>✓ Thank you! We'll get back to you shortly.</p>
@@ -109,7 +128,7 @@ export default function ContactPage() {
               <div className="contact-form">
                 <div className="contact-form-row">
                   <div className="contact-form-group">
-                    <label>Name</label>
+                    <label>Name <span className="contact-required">*</span></label>
                     <input
                       type="text"
                       name="name"
@@ -119,13 +138,14 @@ export default function ContactPage() {
                     />
                   </div>
                   <div className="contact-form-group">
-                    <label>Phone Number</label>
+                    <label>Phone Number <span className="contact-required">*</span></label>
                     <input
                       type="tel"
                       name="phone"
-                      placeholder="+91 00000 00000"
+                      placeholder="Your Phone Number"
                       value={form.phone}
                       onChange={handleChange}
+                      maxLength={10}
                     />
                   </div>
                 </div>
@@ -140,7 +160,7 @@ export default function ContactPage() {
                   />
                 </div>
                 <div className="contact-form-group">
-                  <label>Message</label>
+                  <label>Message <span className="contact-required">*</span></label>
                   <textarea
                     name="message"
                     placeholder="How can we help you?"

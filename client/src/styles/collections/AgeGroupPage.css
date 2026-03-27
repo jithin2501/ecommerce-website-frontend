@@ -3,7 +3,7 @@
 .agp-layout {
   display: flex;
   gap: 3rem;
-  padding: 6rem 0 5rem;       /* 6rem top — same gap as age-section in CollectionsPage */
+   padding: 0.5rem 0 4rem;      /* 6rem top — same gap as age-section in CollectionsPage */
   align-items: flex-start;
 }
 
@@ -92,4 +92,24 @@
 @media (max-width: 768px) {
   .agp-layout { flex-direction: column; padding-top: 4rem; }
   .filter-sidebar { width: 100%; }
+}
+.breadcrumb {
+  max-width: 1600px;
+  margin: 150px auto 10px; /* top gap + small bottom gap */
+  padding: 0 var(--side-pad);
+
+  display: flex;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748B;
+}
+.breadcrumb a {
+  text-decoration: none;
+  color: #64748B;
+}
+
+.breadcrumb span:last-child {
+  color: #2D3E50;
+  font-weight: 700;
 }

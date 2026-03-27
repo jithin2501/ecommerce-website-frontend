@@ -3,7 +3,7 @@
 ========================================================= */
 .age-section {
   width: 100%;
-  padding: 6rem 0 4rem;       /* 6rem top = more gap from banner */
+  padding: 0.5rem 0 4rem; /* 🔥 reduced gap */
 }
 
 .age-grid {
