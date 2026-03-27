@@ -1,45 +1,97 @@
-/* =========================================================
-   HAMBURGER BUTTON
-========================================================= */
+/* NAV BASE */
+nav {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1000;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* LOGO */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #2D3E50;
+}
+
+.logo-img {
+  width: 42px;
+  height: 42px;
+}
+
+.logo-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logo-text {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* HAMBURGER */
 .hamburger {
-  display: none;
-  font-size: 1.6rem;
   background: none;
   border: none;
   cursor: pointer;
-  color: inherit;
 }
 
-/* =========================================================
-   MOBILE RESPONSIVE
-========================================================= */
-@media (max-width: 1100px) {
+/* DRAWER (SLIDE PANEL) */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 75%;
+  height: 100vh;
+  background: white;
 
-  .hamburger {
-    display: block;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: white;
+  padding: 2rem;
 
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
+  transition: right 0.3s ease;
+  z-index: 2000;
+}
 
-    padding: 1.5rem 0;
+.mobile-drawer.open {
+  right: 0;
+}
 
-    display: none;
-  }
+/* LINKS */
+.mobile-drawer a {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2D3E50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  .nav-links.open {
-    display: flex;
-  }
+/* DIVIDER */
+.mobile-drawer hr {
+  border: none;
+  border-top: 1px solid #eee;
+}
 
-  .nav-actions {
-    display: none; /* optional: hide account/cart on mobile */
-  }
+/* OVERLAY BACKGROUND */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: 1500;
 }

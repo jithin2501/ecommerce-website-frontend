@@ -1,139 +1,71 @@
-import { ShoppingCart, User } from 'lucide-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { ShoppingCart, User, Menu, X } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useCart } from '../../context/CartContext';
 import '../../styles/navbar/Navbar.css';
 
 export default function Navbar() {
-  const location  = useLocation();
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
   const { cartCount } = useCart();
-
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const pathParts    = location.pathname.split('/').filter(Boolean);
-  const isBannerPage = pathParts.length <= 2 && location.pathname.startsWith('/collections');
-  const isDetailPage = pathParts.length >= 3 && location.pathname.startsWith('/collections');
-  const isContactPage = location.pathname === '/contact';
-
-  const isCartPage = location.pathname === '/cart';
-  const isHomePage = location.pathname === '/';
-  const isAccountPage = location.pathname === '/account' || location.pathname.startsWith('/account/');
-
-  const isFixedBanner = isBannerPage || isContactPage;
-
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    setScrolled(false);
-
-    if (!isFixedBanner && !isDetailPage && !isCartPage && !isHomePage && !isAccountPage) return;
-
-    const handleScroll = () => setScrolled(window.scrollY > 60);
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [location.pathname]);
-
-  useEffect(() => {
-    const hash = sessionStorage.getItem('scrollTarget');
-    if (!hash) return;
-
-    if (location.pathname === '/') {
-      sessionStorage.removeItem('scrollTarget');
-      const el = document.getElementById(hash);
-      if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
-    }
-  }, [location.pathname]);
-
-  useEffect(() => {
-    if (sessionStorage.getItem('goHome') === '1' && location.pathname === '/') {
-      sessionStorage.removeItem('goHome');
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
-  }, [location.pathname]);
-
-  const handleHome = (e) => {
-    e.preventDefault();
-    sessionStorage.removeItem('scrollTarget');
-
-    if (location.pathname !== '/') {
-      sessionStorage.setItem('goHome', '1');
-      navigate('/');
-    } else {
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
-
+  const handleNav = (path) => {
+    navigate(path);
     setMenuOpen(false);
   };
-
-  const handleSection = (e, sectionId) => {
-    e.preventDefault();
-
-    if (location.pathname !== '/') {
-      sessionStorage.setItem('scrollTarget', sectionId);
-      navigate('/');
-    } else {
-      const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
-    }
-
-    setMenuOpen(false);
-  };
-
-  let navClass = '';
-
-  if (isFixedBanner) {
-    navClass = scrolled ? 'nav-banner-scrolled' : 'nav-initial';
-  } else if ((isDetailPage || isCartPage || isHomePage || isAccountPage) && scrolled) {
-    navClass = 'nav-detail-scrolled';
-  }
 
   return (
-    <nav className={navClass}>
+    <nav>
       <div className="nav-inner">
 
-        <Link to="/" className="logo-container" onClick={handleHome}>
+        {/* LEFT: LOGO */}
+        <Link to="/" className="logo-container">
           <div className="logo-img">
-            <img src="images/logo.png" alt="Sumathi Trends" onError={(e) => { e.target.style.opacity = '0'; }} />
+            <img src="images/logo.png" alt="logo" />
           </div>
-          <div className="logo-text">Sumathi<br />Trends</div>
+          <div className="logo-text">
+            Sumathi<br />Trends
+          </div>
         </Link>
 
-        {/* ✅ Hamburger Button */}
+        {/* RIGHT: HAMBURGER */}
         <button 
           className="hamburger"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          ☰
+          {menuOpen ? <X size={26}/> : <Menu size={26}/>}
         </button>
 
-        <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
-          <li><a href="/" onClick={handleHome}>Home</a></li>
-          <li><a href="#about" onClick={(e) => handleSection(e, 'about')}>About Us</a></li>
-          <li><Link to="/collections" onClick={() => setMenuOpen(false)}>Collections</Link></li>
-          <li><a href="#reviews" onClick={(e) => handleSection(e, 'reviews')}>Review</a></li>
-          <li><Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link></li>
-        </ul>
+      </div>
 
-        <div className="nav-actions">
-          <Link to="/account" className="action-item">
-            <User size={18} />
-            Account
-          </Link>
+      {/* SLIDE MENU */}
+      <div className={`mobile-drawer ${menuOpen ? 'open' : ''}`}>
 
-          <Link to="/cart" className="action-item">
-            <div className="cart-wrapper">
-              <ShoppingCart size={18} />
-              {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
-            </div>
-            Cart
-          </Link>
-        </div>
+        <Link onClick={() => handleNav('/')}>Home</Link>
+        <a onClick={() => handleNav('/')}>About Us</a>
+        <Link onClick={() => handleNav('/collections')}>Collections</Link>
+        <a onClick={() => handleNav('/')}>Review</a>
+        <Link onClick={() => handleNav('/contact')}>Contact</Link>
+
+        <hr />
+
+        <Link onClick={() => handleNav('/account')}>
+          <User size={18}/> Account
+        </Link>
+
+        <Link onClick={() => handleNav('/cart')}>
+          <ShoppingCart size={18}/> Cart ({cartCount})
+        </Link>
 
       </div>
+
+      {/* OVERLAY */}
+      {menuOpen && (
+        <div 
+          className="overlay"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
     </nav>
   );
 }
