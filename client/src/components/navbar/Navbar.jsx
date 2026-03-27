@@ -1,4 +1,4 @@
-import { ShoppingCart, User, Menu, X } from 'lucide-react';
+import { ShoppingCart, User } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useCart } from '../../context/CartContext';
@@ -37,19 +37,49 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
+  useEffect(() => {
+    const hash = sessionStorage.getItem('scrollTarget');
+    if (!hash) return;
+
+    if (location.pathname === '/') {
+      sessionStorage.removeItem('scrollTarget');
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
+    }
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (sessionStorage.getItem('goHome') === '1' && location.pathname === '/') {
+      sessionStorage.removeItem('goHome');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [location.pathname]);
+
   const handleHome = (e) => {
     e.preventDefault();
-    navigate('/');
+    sessionStorage.removeItem('scrollTarget');
+
+    if (location.pathname !== '/') {
+      sessionStorage.setItem('goHome', '1');
+      navigate('/');
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
     setMenuOpen(false);
   };
 
   const handleSection = (e, sectionId) => {
     e.preventDefault();
-    navigate('/');
-    setTimeout(() => {
+
+    if (location.pathname !== '/') {
+      sessionStorage.setItem('scrollTarget', sectionId);
+      navigate('/');
+    } else {
       const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+      if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
+    }
+
     setMenuOpen(false);
   };
 
@@ -65,24 +95,29 @@ export default function Navbar() {
     <nav className={navClass}>
       <div className="nav-inner">
 
-        {/* LOGO */}
         <Link to="/" className="logo-container" onClick={handleHome}>
           <div className="logo-img">
-            <img src="images/logo.png" alt="Sumathi Trends" />
+            <img src="images/logo.png" alt="Sumathi Trends" onError={(e) => { e.target.style.opacity = '0'; }} />
           </div>
           <div className="logo-text">Sumathi<br />Trends</div>
         </Link>
 
-        {/* DESKTOP MENU */}
-        <ul className="nav-links">
+        {/* ✅ Hamburger Button */}
+        <button 
+          className="hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </button>
+
+        <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
           <li><a href="/" onClick={handleHome}>Home</a></li>
           <li><a href="#about" onClick={(e) => handleSection(e, 'about')}>About Us</a></li>
-          <li><Link to="/collections">Collections</Link></li>
+          <li><Link to="/collections" onClick={() => setMenuOpen(false)}>Collections</Link></li>
           <li><a href="#reviews" onClick={(e) => handleSection(e, 'reviews')}>Review</a></li>
-          <li><Link to="/contact">Contact</Link></li>
+          <li><Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link></li>
         </ul>
 
-        {/* DESKTOP ACTIONS */}
         <div className="nav-actions">
           <Link to="/account" className="action-item">
             <User size={18} />
@@ -98,30 +133,6 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* HAMBURGER */}
-        <button 
-          className="hamburger"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <X size={26} /> : <Menu size={26} />}
-        </button>
-
-      </div>
-
-      {/* MOBILE MENU */}
-      <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
-        <a href="/" onClick={handleHome}>Home</a>
-        <a href="#about" onClick={(e) => handleSection(e, 'about')}>About Us</a>
-        <Link to="/collections" onClick={() => setMenuOpen(false)}>Collections</Link>
-        <a href="#reviews" onClick={(e) => handleSection(e, 'reviews')}>Review</a>
-        <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
-
-        <hr />
-
-        <Link to="/account" onClick={() => setMenuOpen(false)}>Account</Link>
-        <Link to="/cart" onClick={() => setMenuOpen(false)}>
-          Cart ({cartCount})
-        </Link>
       </div>
     </nav>
   );
