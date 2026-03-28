@@ -2,24 +2,29 @@ import '../../styles/homepage/Category.css';
 
 const categories = [
   {
-    label: 'Baby & Birthday Frocks',
-    img: './images/baby-frocks.png',
+    label: 'Occasion & Daily Wear Frocks',
+    img: './images/occasion-wear.png',
     fallback: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=400&auto=format&fit=crop',
   },
   {
-    label: 'Tops & T-Shirts',
-    img: './images/tops-tshirts.png',
-    fallback: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=400&auto=format&fit=crop',
+    label: 'Party Wear Collection',
+    img: './images/party-wear.png',
+    fallback: 'https://images.unsplash.com/photo-1503919545889-aef636e10ad4?q=80&w=400&auto=format&fit=crop',
   },
   {
-    label: 'Indo-Western & Traditional Outfits',
-    img: './images/indo-western.png',
+    label: 'Designer & Premium Frocks',
+    img: './images/designer-premium.png',
     fallback: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=400&auto=format&fit=crop',
   },
   {
-    label: 'Party Wear & Boys Collection',
-    img: './images/party-wear.png',
-    fallback: 'https://images.unsplash.com/photo-1503919545889-aef636e10ad4?q=80&w=400&auto=format&fit=crop',
+    label: 'Traditional & Ethnic Frocks',
+    img: './images/traditional-ethnic.png',
+    fallback: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=400&auto=format&fit=crop',
+  },
+  {
+    label: 'Fabric-Based Categories',
+    img: './images/fabric-based.png',
+    fallback: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=400&auto=format&fit=crop',
   },
 ];
 

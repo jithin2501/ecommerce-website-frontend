@@ -9,7 +9,7 @@
 /* ── Header ── */
 .category-header {
   text-align: center;
-  margin-bottom: 5rem;
+  margin-bottom: 3.5rem;
 }
 
 .category-title {
@@ -32,13 +32,13 @@
   font-weight: 400;
 }
 
-/* ── Grid ── */
+/* ── Grid — single row of 6 ── */
 .category-grid {
   display: flex;
   justify-content: center;
-  gap: 7rem;
+  gap: 2.5rem;
   flex-wrap: wrap;
-  padding: 0 8%;
+  padding: 0 4%;
 }
 
 /* ── Card ── */
@@ -46,11 +46,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1rem;
   text-decoration: none;
   cursor: pointer;
   transition: transform 0.3s ease;
-  width: 180px; /* fixed width so label wraps consistently */
+  width: 160px;
 }
 
 .category-card:hover {
@@ -59,8 +59,8 @@
 
 /* ── Circle Image ── */
 .category-circle {
-  width: 180px;
-  height: 180px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   background: #F5F2EE;
   display: flex;
@@ -90,10 +90,10 @@
 
 /* ── Label ── */
 .category-label {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   color: var(--charcoal);
   transition: color 0.3s ease;
   text-align: center;
@@ -105,14 +105,21 @@
 }
 
 /* ── Responsive ── */
-@media (max-width: 900px) {
-  .category-grid { gap: 2.5rem; }
-  .category-card { width: 140px; }
-  .category-circle { width: 140px; height: 140px; }
-}
-
-@media (max-width: 600px) {
-  .category-grid { gap: 1.5rem; }
+@media (max-width: 1100px) {
+  .category-grid { gap: 1.8rem; }
   .category-card { width: 120px; }
   .category-circle { width: 120px; height: 120px; }
+}
+
+@media (max-width: 768px) {
+  .category-grid { gap: 1.5rem; }
+  .category-card { width: 100px; }
+  .category-circle { width: 100px; height: 100px; }
+  .category-label { font-size: 0.62rem; letter-spacing: 0.8px; }
+}
+
+@media (max-width: 500px) {
+  .category-grid { gap: 1rem; }
+  .category-card { width: 85px; }
+  .category-circle { width: 85px; height: 85px; }
 }
