@@ -19,6 +19,7 @@ import WriteReview from './pages/myorders/WriteReview';
 import SupportHub from './pages/support/SupportHub';
 import OrderHelp from './pages/support/OrderHelp';
 import ChatSupport from './pages/support/ChatSupport';
+import CategoryPage from './components/homepage/CategoryPage';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             <Route path="/support"                            element={<SupportHub />} />
             <Route path="/support/order-help"                   element={<OrderHelp />} />
             <Route path="/support/chat"                          element={<ChatSupport />} />
+            <Route path="/category/:slug" element={<CategoryPage />} />
           </Routes>
           <Footer />
         </WishlistProvider>
