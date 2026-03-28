@@ -1,0 +1,161 @@
+/* ══════════════════════════════════════════════════════
+   AllProductsPage.css
+   Layout mirrors .nav-inner so content edges align
+   exactly with the logo (left) and cart icon (right).
+   ══════════════════════════════════════════════════════ */
+
+.all-products-main {
+  padding-top: 80px;
+  min-height: 100vh;
+  background: #fafafa;
+}
+
+/* Breadcrumb bar — sits at z-index 0 so the fixed navbar (higher z-index) covers it on scroll */
+.all-products-bc-bar {
+  position: relative;
+  z-index: 0;
+  background: #fafafa;
+}
+
+/* ── Same constraints as .nav-inner ── */
+.all-products-inner {
+  width: 100%;
+  max-width: 1400px;          /* match your nav-inner max-width exactly */
+  margin: 0 auto;
+  padding: 0 40px;            /* match your nav-inner horizontal padding exactly */
+  box-sizing: border-box;
+}
+
+/* ── Breadcrumb ── */
+.all-products-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  padding: 18px 0 14px;
+  font-size: 13px;
+  color: #888;
+  background: none;
+  border: none;
+  margin: 0;
+  list-style: none;
+  justify-content: flex-start;
+  width: 100%;
+  position: relative;
+  z-index: 1;                  /* sits BELOW the navbar z-index */
+}
+
+
+.ap-bc-link {
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.ap-bc-link:hover { color: #333; }
+
+.ap-bc-sep {
+  color: #bbb;
+  padding: 0 6px;             /* even spacing around › */
+  flex-shrink: 0;
+}
+
+.ap-bc-current {
+  color: #333;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ── Top bar: Filter label + title on the same line ── */
+.all-products-topbar {
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 20px;
+  gap: 0;
+}
+
+/* Left side — matches the sidebar width exactly */
+.ap-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 260px;           /* match your FilterSidebar width */
+  flex-shrink: 0;
+  color: #333;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.ap-topbar-filter {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.ap-topbar-reset {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  color: #c47a3a;
+  padding: 0;
+  margin-left: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+.ap-topbar-reset:hover { color: #a0601e; }
+
+/* Right side — takes remaining space, aligns with the grid */
+.ap-topbar-right {
+  flex: 1;
+  padding-left: 28px;     /* match the gap between sidebar and grid */
+}
+
+/* ── Sidebar + Grid side by side ── */
+.all-products-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  padding-bottom: 60px;
+}
+
+/* ── Grid area ── */
+.all-products-grid-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.ap-grid-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: -0.3px;
+}
+
+.ap-grid-count {
+  font-size: 13px;
+  font-weight: 400;
+  color: #888;
+  margin-left: 8px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .all-products-inner {
+    padding: 0 20px;
+  }
+
+  .all-products-body {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .all-products-inner {
+    padding: 0 16px;
+  }
+}

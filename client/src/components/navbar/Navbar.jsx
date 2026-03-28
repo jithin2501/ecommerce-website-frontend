@@ -21,7 +21,7 @@ export default function Navbar() {
   const isFixedBanner = isBannerPage || isContactPage;
 
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false); // ✅ NEW
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     setScrolled(false);
@@ -57,7 +57,7 @@ export default function Navbar() {
   const handleHome = (e) => {
     e.preventDefault();
     sessionStorage.removeItem('scrollTarget');
-    setMenuOpen(false); // ✅ CLOSE MENU
+    setMenuOpen(false);
 
     if (location.pathname !== '/') {
       sessionStorage.setItem('goHome', '1');
@@ -69,7 +69,7 @@ export default function Navbar() {
 
   const handleSection = (e, sectionId) => {
     e.preventDefault();
-    setMenuOpen(false); // ✅ CLOSE MENU
+    setMenuOpen(false);
 
     if (location.pathname !== '/') {
       sessionStorage.setItem('scrollTarget', sectionId);
@@ -92,7 +92,7 @@ export default function Navbar() {
     <nav className={navClass}>
       <div className="nav-inner">
 
-        {/* LOGO (UNCHANGED) */}
+        {/* LOGO */}
         <Link to="/" className="logo-container" onClick={handleHome}>
           <div className="logo-img">
             <img src="images/logo.png" alt="Sumathi Trends" />
@@ -100,16 +100,17 @@ export default function Navbar() {
           <div className="logo-text">Sumathi<br />Trends</div>
         </Link>
 
-        {/* DESKTOP NAV (UNCHANGED) */}
+        {/* DESKTOP NAV */}
         <ul className="nav-links">
           <li><a href="/" onClick={handleHome}>Home</a></li>
           <li><a href="#about" onClick={(e) => handleSection(e, 'about')}>About Us</a></li>
-          <li><Link to="/collections">Collections</Link></li>
+          {/* Collections now goes to /collections/all (mixed product grid) */}
+          <li><Link to="/collections/all">Collections</Link></li>
           <li><a href="#reviews" onClick={(e) => handleSection(e, 'reviews')}>Review</a></li>
           <li><Link to="/contact">Contact</Link></li>
         </ul>
 
-        {/* DESKTOP ACTIONS (UNCHANGED) */}
+        {/* DESKTOP ACTIONS */}
         <div className="nav-actions">
           <Link to="/account" className="action-item">
             <User size={18} />
@@ -125,19 +126,20 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* ✅ HAMBURGER BUTTON */}
+        {/* HAMBURGER BUTTON */}
         <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </div>
 
       </div>
 
-      {/* ✅ MOBILE MENU */}
+      {/* MOBILE MENU */}
       {menuOpen && (
         <div className="mobile-menu">
           <a href="/" onClick={handleHome}>Home</a>
           <a href="#about" onClick={(e) => handleSection(e, 'about')}>About Us</a>
-          <Link to="/collections" onClick={() => setMenuOpen(false)}>Collections</Link>
+          {/* Collections goes to /collections/all in mobile menu too */}
+          <Link to="/collections/all" onClick={() => setMenuOpen(false)}>Collections</Link>
           <a href="#reviews" onClick={(e) => handleSection(e, 'reviews')}>Review</a>
           <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
 

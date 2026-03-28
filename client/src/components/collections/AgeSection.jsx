@@ -49,6 +49,21 @@ const ageGroups = [
 export default function AgeSection() {
   const navigate = useNavigate();
 
+  const handleAgeClick = (slug) => {
+    // Check if the user arrived here from a Category page subcategory click.
+    // If so, carry the category as a query param to the product grid.
+    const pendingCategory = sessionStorage.getItem('pendingCategory');
+
+    if (pendingCategory) {
+      sessionStorage.removeItem('pendingCategory');
+      // Go to /collections/all with both age slug and category as query params
+      navigate(`/collections/all?age=${slug}&category=${encodeURIComponent(pendingCategory)}`);
+    } else {
+      // Normal behaviour: go to the age-group page
+      navigate(`/collections/${slug}`);
+    }
+  };
+
   return (
     <section id="age-sections" className="age-section">
       <div className="section-inner">
@@ -65,7 +80,7 @@ export default function AgeSection() {
             <div
               key={group.slug}
               className={`age-card ${group.colorClass}`}
-              onClick={() => navigate(`/collections/${group.slug}`)}
+              onClick={() => handleAgeClick(group.slug)}
             >
               <div className="age-img-wrap">
                 <img src={group.img} alt={group.range} />

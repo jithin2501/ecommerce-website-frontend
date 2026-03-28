@@ -20,6 +20,7 @@ import SupportHub from './pages/support/SupportHub';
 import OrderHelp from './pages/support/OrderHelp';
 import ChatSupport from './pages/support/ChatSupport';
 import CategoryPage from './components/homepage/CategoryPage';
+import AllProductsPage from './pages/collections/AllProductsPage'; // ← new
 
 function App() {
   return (
@@ -29,9 +30,16 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/"                                   element={<HomePage />} />
+
+            {/* /collections/all — mixed product grid (navbar Collections link lands here) */}
+            <Route path="/collections/all"                    element={<AllProductsPage />} />
+
+            {/* /collections — Age-group picker (shown when coming from Category page) */}
             <Route path="/collections"                        element={<CollectionsPage />} />
+
             <Route path="/collections/:ageGroup"              element={<AgeGroupPage />} />
             <Route path="/collections/:ageGroup/:productSlug" element={<CollectionDetailPage />} />
+
             <Route path="/cart"                               element={<CartPage />} />
             <Route path="/contact"                            element={<ContactPage />} />
             <Route path="/account"                            element={<PersonInformation />} />
@@ -41,9 +49,9 @@ function App() {
             <Route path="/account/reviews"                    element={<MyReviews />} />
             <Route path="/account/write-review"               element={<WriteReview />} />
             <Route path="/support"                            element={<SupportHub />} />
-            <Route path="/support/order-help"                   element={<OrderHelp />} />
-            <Route path="/support/chat"                          element={<ChatSupport />} />
-            <Route path="/category/:slug" element={<CategoryPage />} />
+            <Route path="/support/order-help"                 element={<OrderHelp />} />
+            <Route path="/support/chat"                       element={<ChatSupport />} />
+            <Route path="/category/:slug"                     element={<CategoryPage />} />
           </Routes>
           <Footer />
         </WishlistProvider>
