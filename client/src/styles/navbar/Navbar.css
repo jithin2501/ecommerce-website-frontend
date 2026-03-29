@@ -2,22 +2,22 @@
    NAVIGATION
 ========================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&display=swap');
+
 nav {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 1.25rem 0;
   width: 100%;
-  border-bottom: none;
   position: sticky;
   top: 0;
   z-index: 1000;
   background: #ffffff;
-  backdrop-filter: blur(10px);
-  transition: background 0.3s ease, border-color 0.3s ease;
+  transition: background 0.3s ease;
 }
 
-/* Default text — #2D3E50 on white */
+/* =========================
+   DEFAULT TEXT COLORS
+========================= */
 nav .logo-text,
 nav .nav-links a,
 nav .action-item {
@@ -26,144 +26,171 @@ nav .action-item {
 }
 
 nav .nav-links a:hover,
-nav .action-item:hover { color: #E8C5A8; }
-
-/* Collections banner page — fixed, white initially */
-nav.nav-collections {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 1000;
-  background: #ffffff;
-  border-bottom: none;
-  backdrop-filter: none;
-  transition: background 0.3s ease, border-color 0.3s ease;
+nav .action-item:hover {
+  color: #E8C5A8;
 }
 
-nav.nav-collections .logo-text,
-nav.nav-collections .nav-links a,
-nav.nav-collections .action-item { color: #2D3E50; transition: color 0.3s ease; }
-nav.nav-collections .nav-links a:hover,
-nav.nav-collections .action-item:hover { color: #E8C5A8; }
+/* =========================
+   SCROLL STATES (RESTORED ✅)
+========================= */
 
-/* Scrolled on banner pages */
+/* Banner pages (top) */
+nav.nav-initial {
+  background: #ffffff;
+}
+
+/* Banner pages (scrolled) */
 nav.nav-banner-scrolled {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 1000;
   background: #2D3E50;
-  border-bottom: none;
-  backdrop-filter: none;
-  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 nav.nav-banner-scrolled .logo-text,
 nav.nav-banner-scrolled .nav-links a,
-nav.nav-banner-scrolled .action-item { color: white; transition: color 0.3s ease; }
-nav.nav-banner-scrolled .nav-links a:hover,
-nav.nav-banner-scrolled .action-item:hover { color: #E8C5A8; }
+nav.nav-banner-scrolled .action-item {
+  color: #ffffff;
+}
 
-/* Scrolled on detail/age pages */
+/* Detail / home pages scroll */
 nav.nav-detail-scrolled {
-  position: sticky;
-  z-index: 1000;
   background: #2D3E50;
-  border-bottom: none;
-  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 nav.nav-detail-scrolled .logo-text,
 nav.nav-detail-scrolled .nav-links a,
-nav.nav-detail-scrolled .action-item { color: white; transition: color 0.3s ease; }
-nav.nav-detail-scrolled .nav-links a:hover,
-nav.nav-detail-scrolled .action-item:hover { color: #E8C5A8; }
-
-nav.nav-collections ~ * .col-banner,
-nav.nav-collections + * { padding-top: 0; }
-
-.nav-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 var(--side-pad);
+nav.nav-detail-scrolled .action-item {
+  color: #ffffff;
 }
 
+/* =========================
+   NAV CONTAINER (ALIGNED WITH HERO)
+========================= */
+.nav-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  width: 100%;
+  max-width: 1200px;   /* same as hero */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =========================
+   LOGO (LEFT)
+========================= */
 .logo-container {
-  display: flex; align-items: center; gap: 12px;
-  text-decoration: none; color: inherit; flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+
+  justify-self: start;
 }
 
 .logo-img {
-  width: 48px; height: 48px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden; background: #F8FAFC;
-  border: 1px solid rgba(0,0,0,0.1); position: relative; flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #F8FAFC;
+  border: 1px solid rgba(0,0,0,0.1);
 }
 
 .logo-img img {
-  width: 100%; height: 100%; object-fit: cover;
-  position: absolute; z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .logo-text {
   font-family: 'Cinzel', serif;
-  font-size: 1.05rem; font-weight: 900; line-height: 1.1;
-  letter-spacing: 0.5px; text-transform: uppercase;
-  color: #2D3E50; text-align: left;
-  transition: color 0.3s ease;
-  display: flex; flex-direction: column;
-  justify-content: center; align-self: center;
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
 }
 
+/* =========================
+   NAV LINKS (CENTER)
+========================= */
 .nav-links {
-  display: flex; gap: 2.5rem; list-style: none;
-  flex: 0 0 auto; justify-content: center; padding: 0; margin: 0;
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  justify-self: center;
 }
 
 .nav-links a {
-  text-decoration: none; color: #2D3E50;
-  font-size: 0.8rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.5px;
-  transition: color 0.3s ease;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
-.nav-links a:hover { color: #E8C5A8; }
-
+/* =========================
+   ACTIONS (RIGHT)
+========================= */
 .nav-actions {
-  display: flex; align-items: center; gap: 2rem;
-  flex: 1; justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  justify-self: end;
 }
 
 .action-item {
-  display: flex; align-items: center; gap: 8px;
-  text-decoration: none; color: #2D3E50;
-  font-size: 0.8rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.5px;
-  cursor: pointer; background: none; border: none;
-  font-family: 'Inter', sans-serif; transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: none;
+  border: none;
 }
 
-.action-item:hover { color: #E8C5A8; }
-
-.cart-wrapper { position: relative; display: flex; align-items: center; }
+/* =========================
+   CART
+========================= */
+.cart-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
 .cart-count {
-  position: absolute; top: -8px; right: -8px;
-  background: var(--cart-orange); color: white;
-  font-size: 0.6rem; width: 16px; height: 16px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 50%; font-weight: bold;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--cart-orange);
+  color: white;
+  font-size: 0.6rem;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
 }
 
-@media (max-width: 1100px) { .nav-links { display: none; } }
-
-/* HAMBURGER */
+/* =========================
+   MOBILE
+========================= */
 .hamburger {
   display: none;
   cursor: pointer;
 }
 
-/* MOBILE MENU */
 .mobile-menu {
   position: absolute;
   top: 100%;
@@ -187,7 +214,9 @@ nav.nav-collections + * { padding-top: 0; }
   text-transform: uppercase;
 }
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 1100px) {
   .nav-links {
     display: none;
@@ -199,5 +228,10 @@ nav.nav-collections + * { padding-top: 0; }
 
   .hamburger {
     display: block;
+    justify-self: end;
+  }
+
+  .nav-inner {
+    grid-template-columns: auto auto;
   }
 }
