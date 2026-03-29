@@ -4,13 +4,8 @@ import FilterSidebar from '../../components/collections/FilterSidebar';
 import ProductGrid from '../../components/collections/ProductGrid';
 import '../../styles/collections/AllProductsPage.css';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// ALL_PRODUCTS — category field MUST exactly match subcategory names in
-// Category.jsx so that ?category=... filtering works correctly.
-// Replace img paths and product details with your real data.
-// ─────────────────────────────────────────────────────────────────────────────
 const ALL_PRODUCTS = [
-  // ── Occasion & Daily Wear ──────────────────────────────────────────────────
+  // ... (Your product data remains the same)
   { id: 1,  name: 'Floral Birthday Gown',       age: '3-6Y',  category: 'Birthday Party Frocks',              stars: 5, reviews: 24, price: '₹1199', oldPrice: '₹1599', img: '/images/collections/Little Girls.jpg', badge: 'Hot' },
   { id: 2,  name: 'Sparkle Birthday Frock',      age: '0-2Y',  category: 'Birthday Party Frocks',              stars: 4, reviews: 18, price: '₹899',  oldPrice: null,     img: '/images/collections/Infant.webp' },
   { id: 3,  name: 'Silk Wedding Frock',          age: '3-6Y',  category: 'Wedding / Festive Frocks',           stars: 5, reviews: 31, price: '₹1799', oldPrice: '₹2299', img: '/images/collections/Little Girls.jpg', badge: 'New' },
@@ -31,8 +26,6 @@ const ALL_PRODUCTS = [
   { id: 18, name: 'Cotton Sleeveless Dress',     age: '6-12Y', category: 'Summer Wear Frocks',                 stars: 4, reviews: 10, price: '₹749',  oldPrice: null,     img: '/images/collections/Pre-Teen.webp' },
   { id: 19, name: 'Comfy Lounge Dress',          age: '0-2Y',  category: 'Comfortable Home Wear',              stars: 4, reviews: 15, price: '₹449',  oldPrice: null,     img: '/images/collections/newborn.avif' },
   { id: 20, name: 'Soft Jersey Home Frock',      age: '3-6Y',  category: 'Comfortable Home Wear',              stars: 4, reviews: 7,  price: '₹499',  oldPrice: null,     img: '/images/collections/Toddler.webp' },
-
-  // ── Party Wear ─────────────────────────────────────────────────────────────
   { id: 21, name: 'Layered Net Party Frock',     age: '3-6Y',  category: 'Net Frocks',                         stars: 5, reviews: 29, price: '₹1099', oldPrice: '₹1499', img: '/images/collections/Little Girls.jpg', badge: 'Hot' },
   { id: 22, name: 'Net Ruffle Dress',            age: '6-12Y', category: 'Net Frocks',                         stars: 4, reviews: 14, price: '₹1199', oldPrice: null,     img: '/images/collections/Kids.webp' },
   { id: 23, name: 'Cinderella Gown',             age: '3-6Y',  category: 'Gown Style Frocks',                  stars: 5, reviews: 38, price: '₹1599', oldPrice: '₹2099', img: '/images/collections/Toddler.webp', badge: 'Best' },
@@ -43,8 +36,6 @@ const ALL_PRODUCTS = [
   { id: 28, name: 'Glitter Star Dress',          age: '3-6Y',  category: 'Sequin / Glitter Frocks',            stars: 4, reviews: 9,  price: '₹1299', oldPrice: null,     img: '/images/collections/Toddler.webp' },
   { id: 29, name: 'Designer Party Gown',         age: '6-12Y', category: 'Designer Party Wear',                stars: 5, reviews: 34, price: '₹2299', oldPrice: '₹2999', img: '/images/collections/Kids.webp', badge: 'Hot' },
   { id: 30, name: 'Boutique Party Dress',        age: '3-6Y',  category: 'Designer Party Wear',                stars: 4, reviews: 18, price: '₹1799', oldPrice: null,     img: '/images/collections/Little Girls.jpg' },
-
-  // ── Designer & Premium ─────────────────────────────────────────────────────
   { id: 31, name: 'Hand Embroidered Frock',      age: '3-6Y',  category: 'Boutique Designer Frocks',           stars: 5, reviews: 22, price: '₹2499', oldPrice: '₹2999', img: '/images/collections/Little Girls.jpg', badge: 'New' },
   { id: 32, name: 'Boutique Floral Dress',       age: '6-12Y', category: 'Boutique Designer Frocks',           stars: 4, reviews: 11, price: '₹1999', oldPrice: null,     img: '/images/collections/Kids.webp' },
   { id: 33, name: 'Zardozi Work Frock',          age: '6-12Y', category: 'Handwork / Embroidery Frocks',       stars: 5, reviews: 19, price: '₹2799', oldPrice: '₹3499', img: '/images/collections/Pre-Teen.webp', badge: 'Hot' },
@@ -53,8 +44,6 @@ const ALL_PRODUCTS = [
   { id: 36, name: 'Tailor Made Party Dress',     age: '6-12Y', category: 'Custom Made Frocks',                 stars: 4, reviews: 6,  price: '₹2999', oldPrice: null,     img: '/images/collections/Kids.webp' },
   { id: 37, name: 'Premium Silk Gown',           age: '6-12Y', category: 'Luxury Collection',                  stars: 5, reviews: 16, price: '₹3999', oldPrice: '₹4999', img: '/images/collections/Pre-Teen.webp', badge: 'New' },
   { id: 38, name: 'Gold Embossed Dress',         age: '3-6Y',  category: 'Luxury Collection',                  stars: 5, reviews: 10, price: '₹3499', oldPrice: null,     img: '/images/collections/Little Girls.jpg' },
-
-  // ── Traditional & Ethnic ───────────────────────────────────────────────────
   { id: 39, name: 'Kanchipuram Silk Frock',      age: '3-6Y',  category: 'Pattu / Silk Frocks',                stars: 5, reviews: 41, price: '₹2199', oldPrice: '₹2799', img: '/images/collections/Little Girls.jpg', badge: 'Best' },
   { id: 40, name: 'Pattu Pavadai',               age: '0-2Y',  category: 'Pattu / Silk Frocks',                stars: 5, reviews: 28, price: '₹1699', oldPrice: null,     img: '/images/collections/Infant.webp' },
   { id: 41, name: 'Lehenga Frock Set',           age: '3-6Y',  category: 'Lehenga Style Frocks',               stars: 5, reviews: 33, price: '₹1899', oldPrice: '₹2399', img: '/images/collections/Toddler.webp', badge: 'Hot' },
@@ -65,8 +54,6 @@ const ALL_PRODUCTS = [
   { id: 46, name: 'Crop Top Skirt Set',          age: '3-6Y',  category: 'Indo-Western Styles',                stars: 4, reviews: 13, price: '₹1099', oldPrice: '₹1399', img: '/images/collections/Toddler.webp', badge: 'Sale' },
   { id: 47, name: 'Diwali Special Pavadai',      age: '0-2Y',  category: 'Festival Special (Diwali, Navratri, etc.)', stars: 5, reviews: 36, price: '₹1599', oldPrice: '₹1999', img: '/images/collections/Infant.webp', badge: 'Hot' },
   { id: 48, name: 'Navratri Chaniya Dress',      age: '3-6Y',  category: 'Festival Special (Diwali, Navratri, etc.)', stars: 5, reviews: 24, price: '₹1399', oldPrice: null,     img: '/images/collections/Little Girls.jpg' },
-
-  // ── Fabric-Based ───────────────────────────────────────────────────────────
   { id: 49, name: 'Pure Cotton Summer Frock',    age: '0-2Y',  category: 'Cotton Frocks',                      stars: 4, reviews: 19, price: '₹549',  oldPrice: null,     img: '/images/collections/newborn.avif' },
   { id: 50, name: 'Block Print Cotton Dress',    age: '3-6Y',  category: 'Cotton Frocks',                      stars: 4, reviews: 14, price: '₹649',  oldPrice: '₹849',  img: '/images/collections/Toddler.webp', badge: 'Sale' },
   { id: 51, name: 'Net Overlay Party Frock',     age: '3-6Y',  category: 'Net Frocks',                         stars: 5, reviews: 23, price: '₹1149', oldPrice: '₹1499', img: '/images/collections/Little Girls.jpg' },
@@ -81,14 +68,25 @@ const ALL_PRODUCTS = [
   { id: 60, name: 'Plush Velvet Party Dress',    age: '6-12Y', category: 'Velvet Frocks (Winter Special)',     stars: 4, reviews: 14, price: '₹1799', oldPrice: null,     img: '/images/collections/Kids.webp' },
 ];
 
+/**
+ * Maps the slugs from AgeSection to actual data values in ALL_PRODUCTS
+ */
+const AGE_MAP = {
+  'newborn-frocks': '0-2Y',
+  'infant-frocks': '0-2Y', // Grouping together as per your sample data
+  'toddler-frocks': '0-2Y', 
+  'little-girls': '3-6Y',
+  'kids': '6-12Y',
+  'pre-teen': '6-12Y'
+};
+
 export default function AllProductsPage() {
   const [searchParams] = useSearchParams();
   const location = useLocation();
 
   const presetCategory = searchParams.get('category') || '';
-  const presetAge      = searchParams.get('age')      || '';
+  const presetAgeSlug   = searchParams.get('age')      || '';
 
-  // Always scroll to top when this page loads
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [location.pathname, location.search]);
@@ -98,14 +96,20 @@ export default function AllProductsPage() {
   );
   const [selectedColors, setSelectedColors] = useState([]);
 
-  // Re-sync filter when URL param changes (e.g. clicking different subcategories)
   useEffect(() => {
     setSelectedCategories(presetCategory ? [presetCategory] : []);
   }, [presetCategory]);
 
   const filtered = ALL_PRODUCTS.filter((p) => {
+    // Category Filter
     if (selectedCategories.length && !selectedCategories.includes(p.category)) return false;
-    if (presetAge && p.age !== presetAge) return false;
+    
+    // Age Filter (Convert slug to data format)
+    if (presetAgeSlug) {
+      const targetAge = AGE_MAP[presetAgeSlug];
+if (targetAge && p.age !== targetAge) return false;
+    }
+    
     return true;
   });
 
@@ -113,8 +117,6 @@ export default function AllProductsPage() {
 
   return (
     <main className="all-products-main">
-
-      {/* Breadcrumb — z-index 0, navbar covers it on scroll */}
       <div className="all-products-bc-bar">
         <div className="all-products-inner">
           <nav className="all-products-breadcrumb">
@@ -131,10 +133,7 @@ export default function AllProductsPage() {
         </div>
       </div>
 
-      {/* Sidebar + Grid */}
       <div className="all-products-inner">
-
-        {/* ── Top bar: Filter label + title on same line ── */}
         <div className="all-products-topbar">
           <div className="ap-topbar-left">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -157,7 +156,6 @@ export default function AllProductsPage() {
         </div>
 
         <div className="all-products-body">
-
           <FilterSidebar
             selectedCategories={selectedCategories}
             setSelectedCategories={setSelectedCategories}
@@ -169,7 +167,6 @@ export default function AllProductsPage() {
           <section className="all-products-grid-area">
             <ProductGrid products={filtered} />
           </section>
-
         </div>
       </div>
     </main>
