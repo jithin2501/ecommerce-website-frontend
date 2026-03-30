@@ -4,82 +4,97 @@ import '../../styles/homepage/NewArrivals.css';
 // Tabs: Baby, Girls, Boys — exactly as in the original HTML
 const TABS = ['Baby', 'Girls', 'Boys'];
 
+const newImages = [
+  '/images/newarrival/IMG_2335.PNG',
+  '/images/newarrival/IMG_2338.PNG',
+  '/images/newarrival/IMG_2339.PNG',
+  '/images/newarrival/IMG_2334.PNG',
+  '/images/newarrival/IMG_2337.PNG',
+];
+
+// helper function for random image
+const getRandomImage = () => {
+  return newImages[Math.floor(Math.random() * newImages.length)];
+};
+
 const products = {
   Baby: [
     {
       name: 'Waffle Textured Plush Set',
       price: '$14.99',
-      img: './images/product1.png',
+      img: getRandomImage(),
       fallback: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?q=80&w=600&auto=format&fit=crop',
     },
     {
       name: 'Ribbed Jogging Set',
       price: '$14.99',
-      img: './images/product2.png',
+      img: getRandomImage(),
       fallback: 'https://images.unsplash.com/photo-1519689373023-dd07c7988603?q=80&w=600&auto=format&fit=crop',
     },
     {
       name: 'Purl Knit Dungarees',
       price: '$7.99 – $15.99',
-      img: './images/product3.png',
+      img: getRandomImage(),
       fallback: 'https://images.unsplash.com/photo-1604176354204-9268737828e4?q=80&w=600&auto=format&fit=crop',
     },
     {
       name: '2-piece Set Light Pink',
       price: '$24.99',
-      img: './images/product4.png',
+      img: getRandomImage(),
       fallback: 'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=600&auto=format&fit=crop',
     },
   ],
+
   Girls: [
     {
       name: '2-piece Set Light Pink',
       price: '$24.99',
-      img: './images/product4.png',
+      img: getRandomImage(),
       fallback: 'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=600&auto=format&fit=crop',
     },
     {
       name: 'Waffle Textured Plush Set',
       price: '$14.99',
-      img: './images/product1.png',
+      img: getRandomImage(),
       fallback: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?q=80&w=600&auto=format&fit=crop',
     },
     {
       name: 'Ribbed Jogging Set',
       price: '$14.99',
-      img: './images/product2.png',
+      img: getRandomImage(),
       fallback: 'https://images.unsplash.com/photo-1519689373023-dd07c7988603?q=80&w=600&auto=format&fit=crop',
     },
     {
       name: 'Purl Knit Dungarees',
       price: '$7.99 – $15.99',
-      img: './images/product3.png',
+      img: getRandomImage(),
       fallback: 'https://images.unsplash.com/photo-1604176354204-9268737828e4?q=80&w=600&auto=format&fit=crop',
     },
   ],
+
   Boys: [
     {
       name: 'Purl Knit Dungarees',
       price: '$7.99 – $15.99',
-      img: './images/product3.png',
+      img: getRandomImage(),
       fallback: 'https://images.unsplash.com/photo-1604176354204-9268737828e4?q=80&w=600&auto=format&fit=crop',
     },
     {
       name: 'Ribbed Jogging Set',
       price: '$14.99',
-      img: './images/product2.png',
+      img: getRandomImage(),
       fallback: 'https://images.unsplash.com/photo-1519689373023-dd07c7988603?q=80&w=600&auto=format&fit=crop',
     },
     {
       name: 'Waffle Textured Plush Set',
       price: '$14.99',
-      img: './images/product1.png',
+      img: getRandomImage(),
       fallback: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?q=80&w=600&auto=format&fit=crop',
     },
     {
       name: '2-piece Set Light Pink',
       price: '$24.99',
-      img: './images/product4.png',
+      img: getRandomImage(),
       fallback: 'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=600&auto=format&fit=crop',
     },
   ],
